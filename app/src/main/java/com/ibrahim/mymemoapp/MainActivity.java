@@ -1,0 +1,68 @@
+package com.ibrahim.mymemoapp;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements CustomAdapter.ItemClickListener, View.OnClickListener {
+
+    private CustomAdapter adapter;
+    private FloatingActionButton addEvent;
+    private DBHelper dbHelper;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        addEvent = findViewById(R.id.addEvent_btn);
+        addEvent.setOnClickListener(this);
+
+        // data to populate the RecyclerView with
+        ArrayList<String> events = new ArrayList<>();
+
+        // set up the RecyclerView
+        RecyclerView recyclerView = findViewById(R.id.rv_events);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                layoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
+        recyclerView.setLayoutManager(layoutManager);
+        dbHelper = new DBHelper(this);
+        ArrayList<EventDAO> allEvents = dbHelper.listEvents();
+        if (allEvents.size() > 0) {
+            recyclerView.setVisibility(View.VISIBLE);
+            adapter = new CustomAdapter(this, events);
+            adapter.setClickListener(this);
+            recyclerView.setAdapter(adapter);
+        }
+        else {
+            recyclerView.setVisibility(View.GONE);
+            Toast.makeText(this, "There is no events in the database. Start adding now", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.addEvent_btn:
+                Toast.makeText(this,"add event",Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+}
+

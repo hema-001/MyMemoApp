@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MyMemoApp</string>
+    <string name="event_title">event title</string>
+    <string name="event_date">event date</string>
+</resources>
