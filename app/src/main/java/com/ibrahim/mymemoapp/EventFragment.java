@@ -76,12 +76,22 @@ public class EventFragment extends Fragment implements View.OnClickListener, Dat
                 break;
             case R.id.btn_add_event:
                 // TODO: Handle add event to the database
-                Log.i("MyTag", "Title = "+et_event_title.getText().toString()+" Date = "+
-                        et_event_date.getText()+" Time = "+et_event_time.getText()+
-                        " Place = "+et_event_place.getText()+" Priority = "+et_event_priority.getText());
+                EventDAO event = new EventDAO();
+                event.setTitle(et_event_title.getText().toString().trim());
+                event.setDate(et_event_date.getText().toString().trim());
+                event.setTime(et_event_time.toString().trim());
+                event.setPlace(et_event_place.getText().toString().trim());
+                event.setPriority(Integer.valueOf(et_event_priority.getText().toString().trim()));
+                DBHelper dbHelper = new DBHelper(getContext());
+                int id = dbHelper.addEvent(event, getContext());
+                event.setId(id);
+                Toast.makeText(getContext(),"Event added successfully",Toast.LENGTH_SHORT).show();
+                getActivity().recreate();
+                getActivity().onBackPressed();
                 break;
             case R.id.btn_cancel_add_event:
                 // TODO: Handle cancel add event and close event fragment
+                getActivity().onBackPressed();
                 Log.i("MyTag", "Canceling add event!");
                 break;
         }

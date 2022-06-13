@@ -1,5 +1,6 @@
 package com.ibrahim.mymemoapp;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -44,7 +45,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<EventDAO> listEvents() {
         String sql = "select * from " + EventContract.EventEntry.TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<EventDAO> storeContacts = new ArrayList<>();
+        ArrayList<EventDAO> eventsList = new ArrayList<>();
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor.moveToFirst()) {
             do {
@@ -54,11 +55,25 @@ public class DBHelper extends SQLiteOpenHelper {
                 String time = cursor.getString(3);
                 String place = cursor.getString(4);
                 int priority = cursor.getInt(5);
-                storeContacts.add(new EventDAO(id, title, date, time, place, priority));
+                eventsList.add(new EventDAO(id, title, date, time, place, priority));
             }
             while (cursor.moveToNext());
         }
         cursor.close();
-        return storeContacts;
+        return eventsList;
+    }
+
+    public int addEvent(EventDAO event, Context context){
+        DBHelper dbHelper = new DBHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(EventContract.EventEntry.COL_NAME_TITLE, event.getTitle());
+        values.put(EventContract.EventEntry.COL_NAME_DATE, event.getDate());
+        values.put(EventContract.EventEntry.COL_NAME_TIME, event.getTime());
+        values.put(EventContract.EventEntry.COL_NAME_PLACE, event.getPlace());
+        values.put(EventContract.EventEntry.COL_NAME_PRIORITY, event.getPriority());
+
+        long newRowId = db.insert(EventContract.EventEntry.TABLE_NAME, null, values);
+        return (int) newRowId;
     }
 }
