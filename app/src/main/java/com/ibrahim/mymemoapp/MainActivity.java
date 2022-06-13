@@ -1,10 +1,15 @@
 package com.ibrahim.mymemoapp;
 
+//import android.app.FragmentManager;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -61,8 +66,17 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Ite
         switch (view.getId()){
             case R.id.addEvent_btn:
                 Toast.makeText(this,"add event",Toast.LENGTH_SHORT).show();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Fragment eventFragment = new EventFragment();
+                fragmentTransaction.replace(R.id.fragment_container_view, eventFragment, null);
+                fragmentTransaction.commit();
                 break;
         }
+    }
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 }
 
