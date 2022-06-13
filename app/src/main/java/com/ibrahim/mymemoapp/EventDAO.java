@@ -16,6 +16,8 @@ public class EventDAO {
         this.place = place;
         this.priority = priority;
     }
+    public EventDAO() {
+    }
 
     public int getId() {
         return id;

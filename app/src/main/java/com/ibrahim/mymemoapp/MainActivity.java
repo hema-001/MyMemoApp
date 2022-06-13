@@ -5,6 +5,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -32,9 +33,6 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Ite
         addEvent = findViewById(R.id.addEvent_btn);
         addEvent.setOnClickListener(this);
 
-        // data to populate the RecyclerView with
-        ArrayList<String> events = new ArrayList<>();
-
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.rv_events);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -44,9 +42,10 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Ite
         recyclerView.setLayoutManager(layoutManager);
         dbHelper = new DBHelper(this);
         ArrayList<EventDAO> allEvents = dbHelper.listEvents();
+        Log.i("MyTag", ""+allEvents.get(0).getTitle());
         if (allEvents.size() > 0) {
             recyclerView.setVisibility(View.VISIBLE);
-            adapter = new CustomAdapter(this, events);
+            adapter = new CustomAdapter(this, allEvents);
             adapter.setClickListener(this);
             recyclerView.setAdapter(adapter);
         }
@@ -70,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Ite
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 Fragment eventFragment = new EventFragment();
                 fragmentTransaction.replace(R.id.fragment_container_view, eventFragment, null);
+                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
                 break;
         }

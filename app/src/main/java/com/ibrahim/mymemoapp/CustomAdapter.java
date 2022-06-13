@@ -1,7 +1,6 @@
 package com.ibrahim.mymemoapp;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,17 +8,16 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
-    private List<String> mData;
+    private List<EventDAO> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    CustomAdapter(Context context, List<String> data) {
+    CustomAdapter(Context context, List<EventDAO> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -34,8 +32,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
+        String eventTitle = mData.get(position).getTitle();
+        String eventDate = mData.get(position).getDate();
+        holder.tv_event_title.setText(eventTitle);
+        holder.tv_event_date.setText(eventDate);
     }
 
     // total number of rows
@@ -47,11 +47,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView myTextView;
+        TextView tv_event_title, tv_event_date;
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.event_title);
+            tv_event_title = itemView.findViewById(R.id.event_title);
+            tv_event_date = itemView.findViewById(R.id.event_date);
             itemView.setOnClickListener(this);
         }
 
@@ -63,7 +64,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     // convenience method for getting data at click position
     String getItem(int id) {
-        return mData.get(id);
+        return String.valueOf(mData.get(id).getId());
     }
 
     // allows clicks events to be caught
