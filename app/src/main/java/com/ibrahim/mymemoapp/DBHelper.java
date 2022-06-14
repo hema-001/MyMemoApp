@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -75,5 +76,31 @@ public class DBHelper extends SQLiteOpenHelper {
 
         long newRowId = db.insert(EventContract.EventEntry.TABLE_NAME, null, values);
         return (int) newRowId;
+    }
+
+    public int updateEvent(EventDAO event, Context context){
+        DBHelper dbHelper = new DBHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        // New values for columns
+        ContentValues values = new ContentValues();
+        values.put(EventContract.EventEntry.COL_NAME_TITLE, event.getTitle());
+        values.put(EventContract.EventEntry.COL_NAME_DATE, event.getDate());
+        values.put(EventContract.EventEntry.COL_NAME_TIME, event.getTime());
+        values.put(EventContract.EventEntry.COL_NAME_PLACE, event.getPlace());
+        values.put(EventContract.EventEntry.COL_NAME_PRIORITY, event.getPriority());
+
+        // Which row to update, based on the ID column
+        String selection = EventContract.EventEntry._ID + " = ?";
+
+        // value to replace the "?" in the selection statement
+        String[] selectionArgs = { String.valueOf(event.getId())};
+
+        int count = db.update(
+                EventContract.EventEntry.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
     }
 }

@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Ite
     private CustomAdapter adapter;
     private FloatingActionButton addEvent;
     private DBHelper dbHelper;
+    private ArrayList<EventDAO> allEvents;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Ite
         recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setLayoutManager(layoutManager);
         dbHelper = new DBHelper(this);
-        ArrayList<EventDAO> allEvents = dbHelper.listEvents();
+        allEvents = dbHelper.listEvents();
         if (allEvents.size() > 0) {
             recyclerView.setVisibility(View.VISIBLE);
             adapter = new CustomAdapter(this, allEvents);
@@ -56,14 +57,29 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Ite
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        // Prepare a bundle with the current event values to show it on edit event fragment
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", allEvents.get(position).getId());
+        bundle.putString("title", allEvents.get(position).getTitle());
+        bundle.putString("date", allEvents.get(position).getDate());
+        bundle.putString("time", allEvents.get(position).getTime());
+        bundle.putString("place", allEvents.get(position).getPlace());
+        bundle.putInt("priority", allEvents.get(position).getPriority());
+
+        // Show the edit event fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment editEventFragment = new EditEventFragment();
+        editEventFragment.setArguments(bundle);
+        fragmentTransaction.replace(R.id.fragment_container_view, editEventFragment, null);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.addEvent_btn:
-                Toast.makeText(this,"add event",Toast.LENGTH_SHORT).show();
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 Fragment eventFragment = new EventFragment();
