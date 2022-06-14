@@ -37,7 +37,8 @@
             android:layout_width="40dp"
             android:layout_height="50dp"
             android:clickable="true"
-            app:srcCompat="@android:drawable/ic_menu_delete"/>
+            android:background="@null"
+            app:srcCompat="@drawable/remove_btn_icon_ol"/>
     </LinearLayout>
 
 </FrameLayout>

@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Edit Event Details"
+            android:text="Add Event"
             android:textSize="8pt"
             android:textAlignment="center"/>
         <LinearLayout
@@ -114,13 +114,15 @@
                 android:layout_height="50dp"
                 android:orientation="horizontal">
                 <Button
+                    style="@style/DefaultButton"
                     android:id="@+id/btn_add_event"
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
-                    android:text="Add"/>
+                    android:text="Add" />
                 <Button
+                    style="@style/DefaultButton"
                     android:id="@+id/btn_cancel_add_event"
                     android:layout_width="100dp"
                     android:layout_height="match_parent"

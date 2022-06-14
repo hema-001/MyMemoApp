@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Ite
         recyclerView.setLayoutManager(layoutManager);
         dbHelper = new DBHelper(this);
         ArrayList<EventDAO> allEvents = dbHelper.listEvents();
-        Log.i("MyTag", ""+allEvents.get(0).getTitle());
         if (allEvents.size() > 0) {
             recyclerView.setVisibility(View.VISIBLE);
             adapter = new CustomAdapter(this, allEvents);
