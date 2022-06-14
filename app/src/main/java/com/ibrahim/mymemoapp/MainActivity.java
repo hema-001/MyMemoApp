@@ -1,9 +1,12 @@
 package com.ibrahim.mymemoapp;
 
 //import android.app.FragmentManager;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,10 +46,12 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Ite
         recyclerView.setLayoutManager(layoutManager);
         dbHelper = new DBHelper(this);
         allEvents = dbHelper.listEvents();
+        dbHelper.close();
         if (allEvents.size() > 0) {
             recyclerView.setVisibility(View.VISIBLE);
             adapter = new CustomAdapter(this, allEvents);
-            adapter.setClickListener(this);
+            adapter.setEditEventClickListener(this);
+            adapter.setDeleteEventClickListener(this);
             recyclerView.setAdapter(adapter);
         }
         else {
@@ -74,6 +79,34 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Ite
         fragmentTransaction.replace(R.id.fragment_container_view, editEventFragment, null);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onEventDeleteClick(View view, int adapterPosition) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.delete_event_msg);
+        // Add the buttons
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked OK button
+                DBHelper dbHelper = new DBHelper(MainActivity.this);
+                dbHelper.deleteEvent(String.valueOf(allEvents.get(adapterPosition).getId()), MainActivity.this);
+                Toast.makeText(MainActivity.this, "Event deleted successfully", Toast.LENGTH_SHORT).show();
+                MainActivity.this.recreate();
+                dbHelper.close();
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+                dialog.cancel();
+            }
+        });
+        // Set other dialog properties
+
+        // Create the AlertDialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override
