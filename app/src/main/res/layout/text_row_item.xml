@@ -13,8 +13,10 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/ll_edit_event"
             android:layout_width="355dp"
             android:layout_height="match_parent"
+            android:clickable="true"
             android:orientation="vertical">
 
             <TextView

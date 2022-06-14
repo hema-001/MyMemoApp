@@ -103,4 +103,17 @@ public class DBHelper extends SQLiteOpenHelper {
                 selectionArgs);
         return count;
     }
+    public int deleteEvent(String id, Context context){
+        DBHelper dbHelper = new DBHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        // Define 'where' part of query.
+        String selection = EventContract.EventEntry._ID + " = ?";
+        // Specify arguments in placeholder order.
+        String[] selectionArgs = { id };
+        // Issue SQL statement.
+        int deletedRows = db.delete(EventContract.EventEntry.TABLE_NAME, selection, selectionArgs);
+
+        return deletedRows;
+    };
 }

@@ -2,4 +2,7 @@
     <string name="app_name">MyMemoApp</string>
     <string name="event_title">event title</string>
     <string name="event_date">event date</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="delete_event_msg">Are you sure want to delete this event?</string>
 </resources>
