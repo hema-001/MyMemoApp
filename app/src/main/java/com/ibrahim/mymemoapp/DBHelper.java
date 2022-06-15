@@ -10,7 +10,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "Event.db";
 
     private static final String SQL_CREATE_ENTRIES =
@@ -20,7 +20,8 @@ public class DBHelper extends SQLiteOpenHelper {
                     EventContract.EventEntry.COL_NAME_DATE + " TEXT," +
                     EventContract.EventEntry.COL_NAME_TIME + " TEXT," +
                     EventContract.EventEntry.COL_NAME_PLACE + " TEXT," +
-                    EventContract.EventEntry.COL_NAME_PRIORITY + " INTEGER ) ";
+                    EventContract.EventEntry.COL_NAME_PRIORITY + " INTEGER, "+
+                    EventContract.EventEntry.COL_NAME_NOTIFY + " INTEGER DEFAULT 0 ) ";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + EventContract.EventEntry.TABLE_NAME;
@@ -56,7 +57,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 String time = cursor.getString(3);
                 String place = cursor.getString(4);
                 int priority = cursor.getInt(5);
-                eventsList.add(new EventDAO(id, title, date, time, place, priority));
+                int notify = cursor.getInt(6);
+                eventsList.add(new EventDAO(id, title, date, time, place, priority, notify));
             }
             while (cursor.moveToNext());
         }
@@ -73,6 +75,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(EventContract.EventEntry.COL_NAME_TIME, event.getTime());
         values.put(EventContract.EventEntry.COL_NAME_PLACE, event.getPlace());
         values.put(EventContract.EventEntry.COL_NAME_PRIORITY, event.getPriority());
+        values.put(EventContract.EventEntry.COL_NAME_NOTIFY, event.getNotify());
 
         long newRowId = db.insert(EventContract.EventEntry.TABLE_NAME, null, values);
         return (int) newRowId;
@@ -116,4 +119,25 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return deletedRows;
     };
+
+    public int updateNotify(Context context, String id, int value){
+        DBHelper dbHelper = new DBHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(EventContract.EventEntry.COL_NAME_NOTIFY, value);
+
+        // Define "where" part of query
+        String selection = EventContract.EventEntry._ID + " = ?";
+
+        String[] selectionArgs = { id };
+
+        int count = db.update(
+                EventContract.EventEntry.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+
+        return count;
+    }
 }

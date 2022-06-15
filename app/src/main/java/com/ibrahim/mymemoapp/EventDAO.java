@@ -7,14 +7,16 @@ public class EventDAO {
     private String time;
     private String place;
     private int priority;
+    private int notify;
 
-    public EventDAO(int id, String title, String date, String time, String place, int priority) {
+    public EventDAO(int id, String title, String date, String time, String place, int priority, int notify) {
         this.id = id;
         this.title = title;
         this.date = date;
         this.time = time;
         this.place = place;
         this.priority = priority;
+        this.notify = notify;
     }
     public EventDAO() {
     }
@@ -66,4 +68,8 @@ public class EventDAO {
     public void setPriority(int priority) {
         this.priority = priority;
     }
+
+    public int getNotify(){ return this.notify;}
+
+    public void setNotify(int notifyTime){this.notify = notifyTime;}
 }

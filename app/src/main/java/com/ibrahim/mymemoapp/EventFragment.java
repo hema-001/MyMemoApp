@@ -92,7 +92,6 @@ public class EventFragment extends Fragment implements View.OnClickListener, Dat
             case R.id.btn_cancel_add_event:
                 // TODO: Handle cancel add event and close event fragment
                 getActivity().onBackPressed();
-                Log.i("MyTag", "Canceling add event!");
                 break;
         }
     }
@@ -104,7 +103,7 @@ public class EventFragment extends Fragment implements View.OnClickListener, Dat
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, day);
-        String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+        String selectedDate = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.getTime());
         et_event_date.setText(selectedDate);
     }
 
