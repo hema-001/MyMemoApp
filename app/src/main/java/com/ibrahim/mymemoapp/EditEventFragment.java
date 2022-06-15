@@ -1,7 +1,11 @@
 package com.ibrahim.mymemoapp;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -9,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -28,6 +33,10 @@ public class EditEventFragment extends Fragment implements View.OnClickListener,
     private TimePickerFragment timePicker;
     private Button btn_apply_edit_event, btn_close_edit_event;
     private EventDAO event;
+    private CheckBox cb_set_reminder;
+    private AlarmManager alarmManager;
+    private PendingIntent alarmIntent;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,20 +59,26 @@ public class EditEventFragment extends Fragment implements View.OnClickListener,
         // map buttons on the fragment event to on click listeners
         btn_apply_edit_event = fragmentView.findViewById(R.id.btn_apply_edit_event);
         btn_close_edit_event = fragmentView.findViewById(R.id.btn_close_edit_event);
+        cb_set_reminder = fragmentView.findViewById(R.id.cb_set_reminder);
 
         btn_apply_edit_event.setOnClickListener(this);
         btn_close_edit_event.setOnClickListener(this);
 
         event = new EventDAO(getArguments().getInt("id"), getArguments().getString("title"),
                 getArguments().getString("date"), getArguments().getString("time"),
-                getArguments().getString("place"), getArguments().getInt("priority"));
+                getArguments().getString("place"), getArguments().getInt("priority"), getArguments().getInt("notify"));
 
         et_event_title.setText(event.getTitle());
         et_event_date.setText(event.getDate());
         et_event_time.setText(event.getTime());
         et_event_place.setText(event.getPlace());
         et_event_priority.setText(String.valueOf(event.getPriority()));
-
+        // set initial set reminder checkbox state based on its value in db
+        if(event.getNotify() == 1){
+            cb_set_reminder.setChecked(true);
+        }else{
+            cb_set_reminder.setChecked(false);
+        }
         return fragmentView;
 
     }
@@ -90,6 +105,40 @@ public class EditEventFragment extends Fragment implements View.OnClickListener,
                 event.setPriority(Integer.valueOf(et_event_priority.getText().toString().trim()));
                 DBHelper dbHelper = new DBHelper(getContext());
                 dbHelper.updateEvent(event, getContext());
+
+                // Alternate set reminder checkbox based on user updates
+                if(cb_set_reminder.isChecked()){
+                    dbHelper.updateNotify(getContext(), String.valueOf(event.getId()), 1);
+
+                    // get date and time from the edit text fields, in this way we ensure that
+                    // the reminder is set for the lastly updated date and time values
+                    String [] date = et_event_date.getText().toString().split("/");
+                    String [] time = et_event_time.getText().toString().split(":");
+
+                    // prepare a calender instance with the given date and time
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(Calendar.YEAR, Integer.valueOf("20"+date[2]));
+                    calendar.set(Calendar.MONTH, (Integer.valueOf(date[0])-1));
+                    calendar.set(Calendar.DAY_OF_MONTH, Integer.valueOf(date[1]));
+                    calendar.set(Calendar.HOUR, Integer.valueOf(time[0]));
+                    calendar.set(Calendar.MINUTE, Integer.valueOf(time[1]));
+                    calendar.set(Calendar.SECOND, 00);
+
+                    // setup an alarm
+                    alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+                    Intent intent = new Intent(getContext(), AlarmReceiver.class);
+                    intent.putExtra("title", et_event_title.getText().toString().trim());
+                    intent.putExtra("date", et_event_date.getText().toString().trim());
+                    intent.putExtra("time", et_event_time.getText().toString().trim());
+                    alarmIntent = PendingIntent.getBroadcast(getContext(), 0, intent, 0);
+                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
+
+                }else if (!cb_set_reminder.isChecked()){
+                    dbHelper.updateNotify(getContext(), String.valueOf(event.getId()), 0);
+                    if (alarmManager!= null) {
+                        alarmManager.cancel(alarmIntent);
+                    }
+                }
                 Toast.makeText(getContext(),"Event updated successfully",Toast.LENGTH_SHORT).show();
                 getActivity().recreate();
                 getActivity().onBackPressed();
@@ -108,7 +157,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener,
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, day);
-        String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+        String selectedDate = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.getTime());
         et_event_date.setText(selectedDate);
     }
 

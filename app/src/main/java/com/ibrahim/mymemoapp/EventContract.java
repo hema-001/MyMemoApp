@@ -12,6 +12,7 @@ public class EventContract {
         public static final String COL_NAME_TIME = "time";
         public static final String COL_NAME_PLACE = "place";
         public static final String COL_NAME_PRIORITY = "priority";
+        public static final String COL_NAME_NOTIFY = "notify";
 
     }
 }
