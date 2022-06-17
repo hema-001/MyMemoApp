@@ -10,7 +10,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 5;
+    public static final int DATABASE_VERSION = 6;
     public static final String DATABASE_NAME = "Event.db";
 
     private static final String SQL_CREATE_ENTRIES =
@@ -65,6 +65,7 @@ public class DBHelper extends SQLiteOpenHelper {
             while (cursor.moveToNext());
         }
         cursor.close();
+        db.close();
         return eventsList;
     }
 
@@ -81,6 +82,8 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(EventContract.EventEntry.COL_NAME_EVENT_IMG_URI, event.getEvent_img_uri());
 
         long newRowId = db.insert(EventContract.EventEntry.TABLE_NAME, null, values);
+        db.close();
+        dbHelper.close();
         return (int) newRowId;
     }
 
@@ -107,6 +110,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 values,
                 selection,
                 selectionArgs);
+        db.close();
+        dbHelper.close();
         return count;
     }
     public int deleteEvent(String id, Context context){
@@ -119,7 +124,8 @@ public class DBHelper extends SQLiteOpenHelper {
         String[] selectionArgs = { id };
         // Issue SQL statement.
         int deletedRows = db.delete(EventContract.EventEntry.TABLE_NAME, selection, selectionArgs);
-
+        db.close();
+        dbHelper.close();
         return deletedRows;
     };
 
@@ -141,6 +147,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 selection,
                 selectionArgs);
 
+        db.close();
+        dbHelper.close();
         return count;
     }
 
@@ -160,6 +168,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 values,
                 selection,
                 selectionArgs);
+        db.close();
+        dbHelper.close();
         return count;
     }
 }
