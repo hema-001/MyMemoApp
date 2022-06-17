@@ -8,8 +8,10 @@ public class EventDAO {
     private String place;
     private int priority;
     private int notify;
+    private String event_img_uri;
 
-    public EventDAO(int id, String title, String date, String time, String place, int priority, int notify) {
+    public EventDAO(int id, String title, String date, String time, String place, int priority,
+                    int notify, String event_img_uri) {
         this.id = id;
         this.title = title;
         this.date = date;
@@ -17,9 +19,9 @@ public class EventDAO {
         this.place = place;
         this.priority = priority;
         this.notify = notify;
+        this.event_img_uri = event_img_uri;
     }
-    public EventDAO() {
-    }
+    public EventDAO() { }
 
     public int getId() {
         return id;
@@ -72,4 +74,10 @@ public class EventDAO {
     public int getNotify(){ return this.notify;}
 
     public void setNotify(int notifyTime){this.notify = notifyTime;}
+
+    public String getEvent_img_uri() { return event_img_uri; }
+
+    public void setEvent_img_uri(String event_img_uri) {
+        this.event_img_uri = event_img_uri;
+    }
 }

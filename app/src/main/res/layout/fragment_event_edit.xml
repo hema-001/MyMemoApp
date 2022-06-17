@@ -1,177 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="300dp"
-        android:layout_height="350dp"
-        android:background="@color/black"
-        android:orientation="vertical"
-        android:padding="5dp"
+        android:layout_height="500dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="Event details"
-            android:textAlignment="center"
-            android:textSize="8pt" />
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Event details"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="8pt" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="Event Title: " />
-
-                <EditText
-                    android:id="@+id/et_event_title"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColor="@color/white"/>
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="Event Title: "
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        android:id="@+id/et_event_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="Date: "
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        android:id="@+id/et_event_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="Time: "
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        android:id="@+id/et_event_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="Place: "
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        android:id="@+id/et_event_place"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="Priority: "
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        android:id="@+id/et_event_priority"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/cb_set_reminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="Set a reminder for the event"
+                    android:textColor="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/btn_take_photo"
+                        style="@style/DefaultButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Take photo"
+                        android:textColor="@color/white"/>
+                    <ImageView
+                        android:id="@+id/iv_taken_image"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:layout_marginLeft="50dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_apply_edit_event"
+                        style="@style/DefaultButton"
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"
+                        android:text="Apply"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/btn_close_edit_event"
+                        style="@style/DefaultButton"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:text="Close"
+                        android:textColor="@color/white" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="Date: " />
-
-                <EditText
-                    android:id="@+id/et_event_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColor="@color/white"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="Time: "
-                    android:textColor="@color/white"/>
-
-                <EditText
-                    android:id="@+id/et_event_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColor="@color/white"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="Place: "
-                    android:textColor="@color/white"/>
-
-                <EditText
-                    android:id="@+id/et_event_place"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColor="@color/white"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:text="Priority: "
-                    android:textColor="@color/white"/>
-
-                <EditText
-                    android:id="@+id/et_event_priority"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColor="@color/white"/>
-            </LinearLayout>
-            <CheckBox
-                android:id="@+id/cb_set_reminder"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:text="Set a reminder for the event"
-                android:textColor="@color/white"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_apply_edit_event"
-                    style="@style/DefaultButton"
-                    android:textColor="@color/white"
-                    android:layout_width="80dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
-                    android:text="Apply" />
-
-                <Button
-                    android:id="@+id/btn_close_edit_event"
-                    style="@style/DefaultButton"
-                    android:textColor="@color/white"
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:text="Close" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
