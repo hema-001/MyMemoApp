@@ -46,7 +46,8 @@ public class DBHelper extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
     public ArrayList<EventDAO> listEvents() {
-        String sql = "select * from " + EventContract.EventEntry.TABLE_NAME;
+        String sql = "select * from " + EventContract.EventEntry.TABLE_NAME + " ORDER BY " +
+                EventContract.EventEntry.COL_NAME_PRIORITY;
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<EventDAO> eventsList = new ArrayList<>();
         Cursor cursor = db.rawQuery(sql, null);
