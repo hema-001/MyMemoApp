@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Ite
         bundle.putString("place", allEvents.get(position).getPlace());
         bundle.putInt("priority", allEvents.get(position).getPriority());
         bundle.putInt("notify", allEvents.get(position).getNotify());
+        bundle.putString("event_ing_uri", allEvents.get(position).getEvent_img_uri());
 
         // Show the edit event fragment
         FragmentManager fragmentManager = getSupportFragmentManager();

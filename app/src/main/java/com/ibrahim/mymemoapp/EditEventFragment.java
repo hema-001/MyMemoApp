@@ -66,7 +66,8 @@ public class EditEventFragment extends Fragment implements View.OnClickListener,
 
         event = new EventDAO(getArguments().getInt("id"), getArguments().getString("title"),
                 getArguments().getString("date"), getArguments().getString("time"),
-                getArguments().getString("place"), getArguments().getInt("priority"), getArguments().getInt("notify"));
+                getArguments().getString("place"), getArguments().getInt("priority"),
+                getArguments().getInt("notify"), getArguments().getString("event_img_uri"));
 
         et_event_title.setText(event.getTitle());
         et_event_date.setText(event.getDate());
@@ -134,6 +135,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener,
                     alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
 
                 }else if (!cb_set_reminder.isChecked()){
+                    // FIXME: Potentially the location of bug 7, https://github.com/hema-001/MyMemoApp/issues/7
                     dbHelper.updateNotify(getContext(), String.valueOf(event.getId()), 0);
                     if (alarmManager!= null) {
                         alarmManager.cancel(alarmIntent);
