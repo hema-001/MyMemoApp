@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginLeft="2.5dp"
-    android:layout_marginRight="2.5dp"
-    android:gravity="center_vertical">
+    android:orientation="vertical"
+    android:background="?android:attr/selectableItemBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:elevation="8dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:layout_margin="8dp"
+        android:padding="6dp">
 
         <LinearLayout
             android:id="@+id/ll_edit_event"
             android:layout_width="355dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:clickable="true"
             android:orientation="vertical">
 
@@ -25,22 +29,36 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="@string/event_title" />
+                android:padding="8dp"
+                android:text="@string/event_title"
+                android:textColor="@color/black"
+                android:fontFamily="serif"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
 
             <TextView
                 android:id="@+id/event_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="@string/event_date" />
+                android:layout_marginBottom="5dp"
+                android:padding="8dp"
+                android:text="@string/event_date"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:fontFamily="serif"
+                android:textSize="20sp"/>
+
         </LinearLayout>
         <ImageButton
             android:id="@+id/delete_event_btn"
             android:layout_width="40dp"
             android:layout_height="50dp"
+            android:layout_gravity="top"
+            android:paddingRight="8dp"
             android:clickable="true"
             android:background="@null"
             app:srcCompat="@drawable/remove_btn_icon_ol"/>
     </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>
