@@ -7,4 +7,5 @@
     <string name="delete_event_msg">Are you sure want to delete this event?</string>
     <string name="channel_name">reminder_notification</string>
     <string name="channel_description">A channel for event reminder notification</string>
+    <string name="action_search">Search</string>
 </resources>
