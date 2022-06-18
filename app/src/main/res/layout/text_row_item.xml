@@ -13,8 +13,8 @@
         android:elevation="8dp"
         android:background="@color/white"
         android:gravity="center"
-        android:layout_margin="8dp"
-        android:padding="6dp">
+        android:layout_margin="5dp"
+        android:padding="3dp">
 
         <LinearLayout
             android:id="@+id/ll_edit_event"
@@ -55,7 +55,7 @@
             android:layout_width="40dp"
             android:layout_height="50dp"
             android:layout_gravity="top"
-            android:paddingRight="8dp"
+            android:paddingRight="15dp"
             android:clickable="true"
             android:background="@null"
             app:srcCompat="@drawable/remove_btn_icon_ol"/>
