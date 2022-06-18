@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ScrollView
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="500dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,155 +16,176 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/black"
+            android:background="#F7F8F8"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="5dp"
+            android:elevation="9dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Event details"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="8pt" />
+                android:textSize="12pt"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed-light"
+                android:textAlignment="center"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="12dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:text="Event Title: "
-                        android:textColor="@color/white" />
 
                     <EditText
                         android:id="@+id/et_event_title"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColor="@color/white" />
+                        android:text="Event Title: "
+                        android:fontFamily="serif"
+                        android:drawableStart="@drawable/ic_event"
+                        android:background="@drawable/edt_rounded"
+                        android:drawablePadding="12dp"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="12dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:text="Date: "
-                        android:textColor="@color/white" />
 
                     <EditText
                         android:id="@+id/et_event_date"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColor="@color/white" />
+                        android:text="Date: "
+                        android:fontFamily="serif"
+                        android:drawableStart="@drawable/ic_date"
+                        android:drawablePadding="12dp"
+                        android:background="@drawable/edt_rounded"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="12dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:text="Time: "
-                        android:textColor="@color/white" />
 
                     <EditText
                         android:id="@+id/et_event_time"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColor="@color/white" />
+                        android:text="Time: "
+                        android:fontFamily="serif"
+                        android:drawableStart="@drawable/ic_time"
+                        android:drawablePadding="12dp"
+                        android:background="@drawable/edt_rounded"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="12dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:text="Place: "
-                        android:textColor="@color/white" />
 
                     <EditText
                         android:id="@+id/et_event_place"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColor="@color/white" />
+                        android:text="Place: "
+                        android:fontFamily="serif"
+                        android:drawableStart="@drawable/ic_place"
+                        android:drawablePadding="12dp"
+                        android:background="@drawable/edt_rounded"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="12dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:text="Priority: "
-                        android:textColor="@color/white" />
-
                     <EditText
                         android:id="@+id/et_event_priority"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColor="@color/white" />
+                        android:text="Priority: "
+                        android:fontFamily="serif"
+                        android:drawableStart="@drawable/ic_priority"
+                        android:drawablePadding="12dp"
+                        android:background="@drawable/edt_rounded"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp" />
                 </LinearLayout>
-
-                <CheckBox
-                    android:id="@+id/cb_set_reminder"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:text="Set a reminder for the event"
-                    android:textColor="@color/white" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <CheckBox
+                        android:id="@+id/cb_set_reminder"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:text="Set a reminder for the event"
+                        android:textColor="@color/black"
+                        android:fontFamily="serif"/>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
                     <Button
                         android:id="@+id/btn_take_photo"
                         style="@style/DefaultButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Take photo"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/black"/>
                     <ImageView
                         android:id="@+id/iv_taken_image"
                         android:layout_width="50dp"
@@ -178,23 +199,23 @@
                     android:layout_height="50dp"
                     android:orientation="horizontal">
 
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_apply_edit_event"
-                        style="@style/DefaultButton"
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="50dp"
                         android:layout_marginRight="50dp"
                         android:text="Apply"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:background="@drawable/button_style"/>
 
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_close_edit_event"
-                        style="@style/DefaultButton"
-                        android:layout_width="100dp"
+                        android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:text="Close"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:background="@drawable/button_style"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

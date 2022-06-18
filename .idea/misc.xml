@@ -14,6 +14,15 @@
         <entry key="..\:/AndroidStudioProjects/MyMemoApp/app/src/main/res/layout/fragment_item_list.xml" value="0.33697916666666666" />
         <entry key="..\:/AndroidStudioProjects/MyMemoApp/app/src/main/res/layout/fragmment_event_edit.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudioProjects/MyMemoApp/app/src/main/res/layout/text_row_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Whyte/AndroidStudioProjects/MyMemoApp/app/src/main/res/drawable/add_btn_icon.xml" value="0.1" />
+        <entry key="..\:/Users/Whyte/AndroidStudioProjects/MyMemoApp/app/src/main/res/drawable/add_btn_icon_cross.xml" value="0.1" />
+        <entry key="..\:/Users/Whyte/AndroidStudioProjects/MyMemoApp/app/src/main/res/drawable/button_style.xml" value="0.1345" />
+        <entry key="..\:/Users/Whyte/AndroidStudioProjects/MyMemoApp/app/src/main/res/drawable/edt_rounded.xml" value="0.1345" />
+        <entry key="..\:/Users/Whyte/AndroidStudioProjects/MyMemoApp/app/src/main/res/drawable/notification_icon.xml" value="0.1" />
+        <entry key="..\:/Users/Whyte/AndroidStudioProjects/MyMemoApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Whyte/AndroidStudioProjects/MyMemoApp/app/src/main/res/layout/fragment_event.xml" value="0.15" />
+        <entry key="..\:/Users/Whyte/AndroidStudioProjects/MyMemoApp/app/src/main/res/layout/fragment_event_edit.xml" value="0.22" />
+        <entry key="..\:/Users/Whyte/AndroidStudioProjects/MyMemoApp/app/src/main/res/layout/text_row_item.xml" value="0.2" />
       </map>
     </option>
   </component>
