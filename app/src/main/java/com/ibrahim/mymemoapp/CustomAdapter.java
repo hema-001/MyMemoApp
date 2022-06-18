@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
@@ -90,6 +91,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     }
     void setDeleteEventClickListener(ItemClickListener deleteEventClickListener){
         this.deleteEventClickListener = deleteEventClickListener;
+    }
+
+    // method for filtering our recyclerview items.
+    public void filterList(ArrayList<EventDAO> filterllist) {
+        // below line is to add our filtered
+        // list in our course array list.
+        mData = filterllist;
+        // below line is to notify our adapter
+        // as change in recycler view data.
+        notifyDataSetChanged();
     }
 
     // parent activity will implement this method to respond to click events
