@@ -4,7 +4,7 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">#222831</item>
         <item name="colorPrimaryVariant">#393E46</item>
-        <item name="colorOnPrimary">#EEEEEE</item>
+        <item name="colorOnPrimary">#393E46</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">#00ADB5</item>
         <item name="colorSecondaryVariant">#393E46</item>
