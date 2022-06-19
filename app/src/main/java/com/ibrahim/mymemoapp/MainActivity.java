@@ -1,7 +1,6 @@
 package com.ibrahim.mymemoapp;
 
 //import android.app.FragmentManager;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Ite
     private CustomAdapter adapter;
     private FloatingActionButton addEvent;
     private DBHelper dbHelper;
-    private ArrayList<EventDAO> allEvents;
+    private ArrayList<EventPOJO> allEvents;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,10 +162,10 @@ public class MainActivity extends AppCompatActivity implements CustomAdapter.Ite
     // https://www.geeksforgeeks.org/searchview-in-android-with-recyclerview/
     private void filter(String text) {
         // creating a new array list to filter our data.
-        ArrayList<EventDAO> filteredlist = new ArrayList<>();
+        ArrayList<EventPOJO> filteredlist = new ArrayList<>();
 
         // running a for loop to compare elements.
-        for (EventDAO item : allEvents) {
+        for (EventPOJO item : allEvents) {
             // checking if the entered string matched with any item of our recycler view.
             if (item.getPlace().toLowerCase().contains(text.toLowerCase())) {
                 // if the item is matched we are

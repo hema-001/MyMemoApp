@@ -1,6 +1,6 @@
 package com.ibrahim.mymemoapp;
 
-public class EventDAO {
+public class EventPOJO {
     private int id;
     private String title;
     private String date;
@@ -10,8 +10,8 @@ public class EventDAO {
     private int notify;
     private String event_img_uri;
 
-    public EventDAO(int id, String title, String date, String time, String place, int priority,
-                    int notify, String event_img_uri) {
+    public EventPOJO(int id, String title, String date, String time, String place, int priority,
+                     int notify, String event_img_uri) {
         this.id = id;
         this.title = title;
         this.date = date;
@@ -21,7 +21,7 @@ public class EventDAO {
         this.notify = notify;
         this.event_img_uri = event_img_uri;
     }
-    public EventDAO() { }
+    public EventPOJO() { }
 
     public int getId() {
         return id;

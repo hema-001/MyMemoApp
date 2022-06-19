@@ -3,9 +3,7 @@ package com.ibrahim.mymemoapp;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
 import android.text.InputType;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-
-import com.google.android.material.timepicker.TimeFormat;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -76,7 +71,7 @@ public class EventFragment extends Fragment implements View.OnClickListener, Dat
                 break;
             case R.id.btn_add_event:
                 // TODO: Handle add event to the database
-                EventDAO event = new EventDAO();
+                EventPOJO event = new EventPOJO();
                 event.setTitle(et_event_title.getText().toString().trim());
                 event.setDate(et_event_date.getText().toString().trim());
                 event.setTime(et_event_time.getText().toString().trim());

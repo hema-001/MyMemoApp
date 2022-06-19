@@ -15,13 +15,13 @@ import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
-    private List<EventDAO> mData;
+    private List<EventPOJO> mData;
     private LayoutInflater mInflater;
     private ItemClickListener editEventClickListener;
     private ItemClickListener deleteEventClickListener;
 
     // data is passed into the constructor
-    CustomAdapter(Context context, List<EventDAO> data) {
+    CustomAdapter(Context context, List<EventPOJO> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -94,7 +94,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     }
 
     // method for filtering our recyclerview items.
-    public void filterList(ArrayList<EventDAO> filterllist) {
+    public void filterList(ArrayList<EventPOJO> filterllist) {
         // below line is to add our filtered
         // list in our course array list.
         mData = filterllist;
