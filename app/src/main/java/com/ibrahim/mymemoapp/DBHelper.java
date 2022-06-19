@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -45,11 +44,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
     }
-    public ArrayList<EventDAO> listEvents() {
+    public ArrayList<EventPOJO> listEvents() {
         String sql = "select * from " + EventContract.EventEntry.TABLE_NAME + " ORDER BY " +
                 EventContract.EventEntry.COL_NAME_PRIORITY;
         SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<EventDAO> eventsList = new ArrayList<>();
+        ArrayList<EventPOJO> eventsList = new ArrayList<>();
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor.moveToFirst()) {
             do {
@@ -61,7 +60,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 int priority = cursor.getInt(5);
                 int notify = cursor.getInt(6);
                 String event_img_uri = cursor.getString(7);
-                eventsList.add(new EventDAO(id, title, date, time, place, priority, notify, event_img_uri));
+                eventsList.add(new EventPOJO(id, title, date, time, place, priority, notify, event_img_uri));
             }
             while (cursor.moveToNext());
         }
@@ -70,7 +69,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return eventsList;
     }
 
-    public int addEvent(EventDAO event, Context context){
+    public int addEvent(EventPOJO event, Context context){
         DBHelper dbHelper = new DBHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -88,7 +87,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return (int) newRowId;
     }
 
-    public int updateEvent(EventDAO event, Context context){
+    public int updateEvent(EventPOJO event, Context context){
         DBHelper dbHelper = new DBHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 

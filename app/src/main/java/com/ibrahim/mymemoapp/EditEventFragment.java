@@ -8,7 +8,6 @@ import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -46,7 +45,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener,
     private DatePickerFragment datePicker;
     private TimePickerFragment timePicker;
     private Button btn_apply_edit_event, btn_close_edit_event, btn_take_photo;
-    private EventDAO event;
+    private EventPOJO event;
     private CheckBox cb_set_reminder;
     private AlarmManager alarmManager;
     private PendingIntent alarmIntent;
@@ -84,7 +83,7 @@ public class EditEventFragment extends Fragment implements View.OnClickListener,
         btn_close_edit_event.setOnClickListener(this);
         btn_take_photo.setOnClickListener(this);
 
-        event = new EventDAO(getArguments().getInt("id"), getArguments().getString("title"),
+        event = new EventPOJO(getArguments().getInt("id"), getArguments().getString("title"),
                 getArguments().getString("date"), getArguments().getString("time"),
                 getArguments().getString("place"), getArguments().getInt("priority"),
                 getArguments().getInt("notify"), getArguments().getString("event_img_uri"));
